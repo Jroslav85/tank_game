@@ -7,25 +7,31 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class TanksGame extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+	Texture imgPlayer;
+	Player player;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		createPlayer();
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0.1f, 0.1f, 0, 1);
 		batch.begin();
-		batch.draw(img, 0, 0);
+		batch.draw(imgPlayer, 0, 0);
 		batch.end();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
+		imgPlayer.dispose();
+	}
+	
+	private void createPlayer() {
+		imgPlayer = new Texture("player.png");
+		player = new Player(imgPlayer);
 	}
 }
